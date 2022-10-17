@@ -1,6 +1,6 @@
-# first
+# Introduction
 
-A new Flutter project.
+It's just my adventure of learning Flutter
 
 ## Getting Started
 
