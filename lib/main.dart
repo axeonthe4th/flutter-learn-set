@@ -4,6 +4,7 @@ import 'package:first/101/padding_learn.dart';
 import 'package:first/101/stateless._learn.dart';
 import 'package:first/101/text_learn_view.dart';
 import 'package:first/101/scaffold_learn.dart';
+import 'package:first/202/image_learn_advanced.dart';
 import 'package:first/202/theme/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:first/101/button_learn.dart';
@@ -12,6 +13,8 @@ import '101/appbar_learn.dart';
 import "package:first/101/color_learn.dart";
 import '101/card_learn.dart';
 import '101/image_learn.dart';
+import '101/list_view_builder_example.dart';
+import '202/animated_learn.dart';
 import '202/package_learn.dart';
 import '202/theme_learn_view.dart';
 import 'demos/note_demos_view.dart';
@@ -48,7 +51,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: ThemeLearnView(),
+      home: AnimatedLearnView(),
     );
   }
 }

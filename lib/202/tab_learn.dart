@@ -81,7 +81,7 @@ class _TabLearnState extends State<TabLearn> with TickerProviderStateMixin {
       children: const [
         ListViewLearn(),
         TextFieldLearn(),
-        ListViewBuilderLearn(),
+        ListViewBuilderLearn1(),
         AppBarLearnView(),
       ],
     );
