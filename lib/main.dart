@@ -15,7 +15,10 @@ import '101/card_learn.dart';
 import '101/image_learn.dart';
 import '101/list_view_builder_example.dart';
 import '202/animated_learn.dart';
+import '202/form_learn_view.dart';
+import '202/oop_learn_view.dart';
 import '202/package_learn.dart';
+import '202/state_manage/state_manage_learn_view.dart';
 import '202/theme_learn_view.dart';
 import 'demos/note_demos_view.dart';
 import '101/custom_widget_learn.dart';
@@ -51,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: AnimatedLearnView(),
+      home: FormLearnView(),
     );
   }
 }

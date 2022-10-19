@@ -7,9 +7,19 @@ class AnimatedLearnView extends StatefulWidget {
   State<AnimatedLearnView> createState() => _AnimatedLearnViewState();
 }
 
-class _AnimatedLearnViewState extends State<AnimatedLearnView> {
+class _AnimatedLearnViewState extends State<AnimatedLearnView>
+    with TickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Durations.durationLow);
+  }
+
   bool _isVisible = true;
   bool _opacity = true;
+  late AnimationController controller;
+
   void _changeVisible() {
     setState(() {
       _isVisible = !_isVisible;
@@ -31,7 +41,7 @@ class _AnimatedLearnViewState extends State<AnimatedLearnView> {
         children: [
           ListTile(
             title: AnimatedOpacity(
-                duration: const Duration(milliseconds: 500),
+                duration: Durations.durationLow,
                 opacity: _opacity ? 1 : 0,
                 child: Text(
                   "data",
@@ -45,20 +55,49 @@ class _AnimatedLearnViewState extends State<AnimatedLearnView> {
                 icon: const Icon(Icons.precision_manufacturing_rounded)),
           ),
           AnimatedDefaultTextStyle(
-            duration: const Duration(milliseconds: 500),
+            duration: Durations.durationLow,
             style: (_isVisible
                     ? Theme.of(context)
                         .textTheme
                         .headline1
-                        ?.copyWith(fontSize: 30, fontWeight: FontWeight.w300)
+                        ?.copyWith(fontWeight: FontWeight.w300)
                     : Theme.of(context).textTheme.subtitle1) ??
                 const TextStyle(),
             child: const Text("data"),
+          ),
+          AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: controller,
+          ),
+          AnimatedContainer(
+            color: Colors.lime,
+            duration: Durations.durationLow,
+            height: _isVisible ? 0 : MediaQuery.of(context).size.width * 0.2,
+            width: MediaQuery.of(context).size.height * 0.2,
+          ),
+          Expanded(
+              child: Stack(
+            children: [
+              AnimatedPositioned(
+                left: _isVisible ? 50 : 10,
+                curve: Curves.elasticOut,
+                duration: Durations.durationLow,
+                child: Text("data"),
+              )
+            ],
+          )),
+          Expanded(
+            child: AnimatedList(itemBuilder: (context, index, animation) {
+              return const Text("data");
+            }),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _changeVisible,
+        onPressed: () {
+          _changeVisible();
+          controller.animateTo(_isVisible ? 1 : 0);
+        },
       ),
     );
   }
@@ -115,4 +154,8 @@ class MyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text("data", style: context.MyTextTheme().headline1);
   }
+}
+
+class Durations {
+  static const Duration durationLow = Duration(milliseconds: 500);
 }
