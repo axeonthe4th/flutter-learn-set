@@ -31,7 +31,6 @@ class _TabLearnState extends State<TabLearn> with TickerProviderStateMixin {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           floatingActionButton: _myFloatingActionButton(),
-          appBar: AppBar(),
           body: _tabbarView(),
           bottomNavigationBar: BottomAppBar(
             notchMargin: _notchedValue,

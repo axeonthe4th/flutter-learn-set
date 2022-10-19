@@ -20,7 +20,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
               children: [
                 FittedBox(
                     child: Text(
-                  "axeon",
+                  "me",
                   style: Theme.of(context).textTheme.headline1,
                   maxLines: 1,
                 )),
@@ -46,7 +46,7 @@ class _ListViewLearnState extends State<ListViewLearn> {
                 //xx
                 FittedBox(
                     child: Text(
-                  "axeon",
+                  "me",
                   style: Theme.of(context).textTheme.headline1,
                   maxLines: 1,
                 )),
