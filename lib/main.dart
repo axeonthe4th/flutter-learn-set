@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: TabLearn(),
+      home: SharedLearn(),
     );
   }
 }
