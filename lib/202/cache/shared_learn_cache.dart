@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:first/202/cache/shared_list_cache.dart';
 import 'package:first/202/cache/shared_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,10 +15,13 @@ class SharedLearn extends StatefulWidget {
 class _SharedLearnState extends LoadingState<SharedLearn> {
   int _currentValue = 0;
   late final SharedManager _manager;
+
+  late final List<User> userItems;
   @override
   void initState() {
     super.initState();
     _manager = SharedManager();
+    userItems = UserItems().users;
     _initialize();
   }
 
@@ -56,10 +60,14 @@ class _SharedLearnState extends LoadingState<SharedLearn> {
         centerTitle: true,
         title: Text(_currentValue.toString()),
       ),
-      body: TextField(
-        onChanged: (value) {
-          _onChangeValue(value);
-        },
+      body: Column(
+        children: [
+          TextField(
+            onChanged: (value) {
+              _onChangeValue(value);
+            },
+          ),
+        ],
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 30.0),
@@ -94,6 +102,26 @@ class _SharedLearnState extends LoadingState<SharedLearn> {
       },
       child: const Icon(Icons.remove),
     );
+  }
+}
+
+class User {
+  final String name;
+  final String description;
+  final String url;
+
+  User(this.name, this.description, this.url);
+}
+
+class UserItems {
+  late final List<User> users;
+  UserItems() {
+    users = [
+      User("axeon", "main character", "xd"),
+      User("lynxeon", "sidekick(dead)", "xdxd"),
+      User("synthlexian", "no one", "lol"),
+      User("d", "antagonist", "king"),
+    ];
   }
 }
 
