@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:first/202/cache/shared_list_cache.dart';
 import 'package:first/202/cache/shared_manager.dart';
+import 'package:first/202/cache/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -105,14 +106,6 @@ class _SharedLearnState extends LoadingState<SharedLearn> {
   }
 }
 
-class User {
-  final String name;
-  final String description;
-  final String url;
-
-  User(this.name, this.description, this.url);
-}
-
 class UserItems {
   late final List<User> users;
   UserItems() {
@@ -120,7 +113,7 @@ class UserItems {
       User("axeon", "main character", "xd"),
       User("lynxeon", "sidekick(dead)", "xdxd"),
       User("synthlexian", "no one", "lol"),
-      User("d", "antagonist", "king"),
+      User("pneum", "antagonist", "xd"),
     ];
   }
 }

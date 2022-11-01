@@ -2,24 +2,28 @@ import 'dart:convert';
 
 import '../shared_learn_cache.dart';
 import '../shared_manager.dart';
+import '../user_model.dart';
 
 class UserCacheManager {
   final SharedManager sharedManager;
 
   UserCacheManager(this.sharedManager);
 
-  void saveItems(List<User> items) {
-    final _items = items.map((element) => jsonEncode(element)).toList();
-    sharedManager.saveStringItems(SharedKeys.users, _items);
+  Future<void> saveItems(List<User> items) async {
+    final _items =
+        items.map((element) => jsonEncode(element.toJson())).toList();
+    await sharedManager.saveStringItems(SharedKeys.users, _items);
   }
 
   List<User>? getItems() {
     final itemsString = sharedManager.getStringItems(SharedKeys.users);
     if (itemsString?.isNotEmpty ?? false) {
       return itemsString!.map((element) {
-        final jsonObject = jsonDecode(element);
-
-        return User("name", "description", "url");
+        final json = jsonDecode(element);
+        if (json is Map<String, dynamic>) {
+          return User.fromJson(json);
+        }
+        return User("", "", "");
       }).toList();
     }
     return null;

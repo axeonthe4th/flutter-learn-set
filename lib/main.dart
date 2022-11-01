@@ -15,6 +15,7 @@ import '101/card_learn.dart';
 import '101/image_learn.dart';
 import '101/list_view_builder_example.dart';
 import '202/animated_learn.dart';
+import '202/cache/secure_context/secure_context_learn.dart';
 import '202/cache/shared_learn_cache.dart';
 import '202/cache/shared_list_cache.dart';
 import '202/form_learn_view.dart';
@@ -54,9 +55,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: SharedListCache(),
+      home: SharedContextLearn(),
     );
   }
 }
