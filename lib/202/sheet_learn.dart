@@ -1,5 +1,10 @@
 import 'dart:ffi';
 
+import 'package:first/101/image_learn.dart';
+import 'package:first/101/list_view_builder.dart';
+import 'package:first/101/list_view_learn.dart';
+import 'package:first/202/animated_learn.dart';
+import 'package:first/202/image_learn_advanced.dart';
 import 'package:flutter/material.dart';
 
 class SheetLearn extends StatefulWidget {
@@ -9,7 +14,7 @@ class SheetLearn extends StatefulWidget {
   State<SheetLearn> createState() => _SheetLearnState();
 }
 
-class _SheetLearnState extends State<SheetLearn> {
+class _SheetLearnState extends State<SheetLearn> with ProductSheetMixin {
   Color _backgroundColor = Colors.white;
   @override
   void initState() {
@@ -24,7 +29,13 @@ class _SheetLearnState extends State<SheetLearn> {
       backgroundColor:
           MyBottomSheetContent.isPressed ? Colors.grey : _backgroundColor,
       appBar: AppBar(),
-      body: Column(),
+      body: Center(
+          child: TextButton(
+              onPressed: () {
+                showCustomSheet(context, ImageLearnAdvanced());
+              },
+              child:
+                  Text("show", style: Theme.of(context).textTheme.headline1))),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
@@ -69,26 +80,21 @@ class _MyBottomSheetContentState extends State<MyBottomSheetContent> {
           Stack(
             children: [
               SizedBox(
-                height: 24,
+                height: 30,
                 child: Divider(
-                  color: Colors.black,
-                  thickness: 1,
-                  indent: MediaQuery.of(context).size.width * 0.45,
-                  endIndent: MediaQuery.of(context).size.width * 0.45,
-                ),
+                    color: Colors.black,
+                    thickness: 1,
+                    indent: MediaQuery.of(context).size.width * 0.45,
+                    endIndent: MediaQuery.of(context).size.width * 0.45),
               ),
               Positioned(
-                  right: 0,
-                  top: 0,
-                  child: Container(
-                    child: IconButton(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.topCenter,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.close)),
-                  ))
+                  right: 10,
+                  top: 5,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(Icons.close)))
             ],
           ),
           const Text("data xd"),
@@ -107,16 +113,62 @@ class _MyBottomSheetContentState extends State<MyBottomSheetContent> {
 }
 
 mixin ProductSheetMixin {
-  void showCustomSheet(BuildContext context) {
-    showModalBottomSheet(
+  Future<T?> showCustomSheet<T>(BuildContext context, Widget child) async {
+    return showModalBottomSheet<T>(
         barrierColor: Colors.transparent,
         backgroundColor: Colors.cyan,
-        isScrollControlled: true,
         context: context,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (context) {
-          return MyBottomSheetContent();
+          return CustomMainSheet(child: Expanded(child: ListViewLearn()));
         });
+  }
+}
+
+class CustomMainSheet extends StatelessWidget {
+  const CustomMainSheet({super.key, required this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5, bottom: 10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [BaseSheetHeader(), child],
+      ),
+    );
+  }
+}
+
+class BaseSheetHeader extends StatelessWidget {
+  const BaseSheetHeader({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        SizedBox(
+          height: 30,
+          child: Divider(
+            color: Colors.black,
+            thickness: 1,
+            indent: MediaQuery.of(context).size.width * 0.45,
+            endIndent: MediaQuery.of(context).size.width * 0.45,
+          ),
+        ),
+        Positioned(
+            right: 10,
+            top: 5,
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(Icons.close),
+            ))
+      ],
+    );
   }
 }

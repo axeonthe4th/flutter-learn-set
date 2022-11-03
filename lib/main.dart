@@ -14,6 +14,7 @@ import "package:first/101/color_learn.dart";
 import '101/card_learn.dart';
 import '101/image_learn.dart';
 import '101/list_view_builder_example.dart';
+import '202/alert_learn.dart';
 import '202/animated_learn.dart';
 import '202/cache/secure_context/secure_context_learn.dart';
 import '202/cache/shared_learn_cache.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: SheetLearn(),
+      home: AlertLearn(),
     );
   }
 }
