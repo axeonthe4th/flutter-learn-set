@@ -27,6 +27,7 @@ import '202/state_manage/state_manage_learn_view.dart';
 import '202/theme_learn_view.dart';
 import '303/call_back_learn.dart';
 import '303/part/part_of_learn.dart';
+import '303/tabbar_advanced.dart';
 import 'demos/note_demos_view.dart';
 import '101/custom_widget_learn.dart';
 import "101/indicator_learn.dart";
@@ -62,7 +63,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: LightTheme().theme,
-      home: CallBackLearn(),
+      home: TabAdvancedLearn(),
     );
   }
 }
