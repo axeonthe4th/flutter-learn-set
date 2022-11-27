@@ -1,3 +1,4 @@
+import 'package:first/product/extension/string_extension.dart';
 import 'package:flutter/material.dart';
 
 import '../viewModel/reqres_view_model.dart';
@@ -14,19 +15,21 @@ class _ReqresViewState extends ReqresViewModel {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          AppBar(title: isLoading ? null : const CircularProgressIndicator()),
+          AppBar(title: isLoading ? const CircularProgressIndicator() : null),
       body: ListView.builder(
           itemCount: resources.length,
           itemBuilder: ((context, index) {
-            return Text(isLoading ? (resources[index].name ?? "") : "");
+            return Card(
+                color: Color(resources[index].color?.colorValue ?? 0),
+                child: Text(isLoading ? "" : (resources[index].name ?? "")));
           })),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          changeLoading();
-          await Future.delayed(const Duration(milliseconds: 500));
-          changeLoading();
-        },
-      ),
+          onPressed: () async {
+            changeLoading();
+            await Future.delayed(const Duration(milliseconds: 500));
+            changeLoading();
+          },
+          child: const Icon(Icons.refresh_outlined)),
     );
   }
 }
