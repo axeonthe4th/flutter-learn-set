@@ -35,18 +35,7 @@ class _ReqresViewState extends State<ReqresView> with ProjectDioMixin {
         return Scaffold(
           appBar: AppBar(
               actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      context
-                          .read<ReqresProvider>()
-                          .saveToLocale(context.read<ResourceContext>());
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) {
-                          return ImageLearn();
-                        },
-                      ));
-                    },
-                    child: const Icon(Icons.ac_unit))
+                _SaveAndNavigateWidget(),
               ],
               title: context.watch<ReqresProvider>().isLoading
                   ? const CircularProgressIndicator()
@@ -87,6 +76,28 @@ class _ReqresViewState extends State<ReqresView> with ProjectDioMixin {
                       .headline1!
                       .copyWith(fontSize: 30, fontWeight: FontWeight.w300)));
         }));
+  }
+}
+
+class _SaveAndNavigateWidget extends StatelessWidget {
+  const _SaveAndNavigateWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          context
+              .read<ReqresProvider>()
+              .saveToLocale(context.read<ResourceContext>());
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return ImageLearn();
+            },
+          ));
+        },
+        child: const Icon(Icons.ac_unit));
   }
 }
 
