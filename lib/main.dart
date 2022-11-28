@@ -6,9 +6,12 @@ import 'package:first/101/text_learn_view.dart';
 import 'package:first/101/scaffold_learn.dart';
 import 'package:first/202/image_learn_advanced.dart';
 import 'package:first/202/theme/light_theme.dart';
+import 'package:first/product/global/resource_context.dart';
+import 'package:first/product/global/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:first/101/button_learn.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import '101/appbar_learn.dart';
 import "package:first/101/color_learn.dart";
 import '101/card_learn.dart';
@@ -52,7 +55,17 @@ import "202/service/service_post_learn_view.dart";
 import '202/service/service_learn_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      Provider(
+        create: (context) => ResourceContext(),
+      ),
+      ChangeNotifierProvider<ThemeNotifier>(
+        create: (context) => ThemeNotifier(),
+      )
+    ],
+    builder: (context, child) => MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -63,7 +76,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: LightTheme().theme,
+      theme: context.watch<ThemeNotifier>().currentTheme,
       home: ReqresView(),
     );
   }

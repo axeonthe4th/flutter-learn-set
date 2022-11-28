@@ -19,7 +19,7 @@ abstract class ReqresViewModel extends LoadingState<ReqresView>
     _fetch();
   }
 
-  void _fetch() async {
+  Future<void> _fetch() async {
     changeLoading();
     resources = (await reqresService.fetchResourceItem())?.data ?? [];
     changeLoading();
