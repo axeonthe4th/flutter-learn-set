@@ -41,11 +41,7 @@ class _LottieLearnState extends State<LottieLearn>
                   repeat: false, controller: controller))
         ],
       ),
-      body: Center(
-        child: Column(
-          children: const [LoadingLottie(), DecorationLottie()],
-        ),
-      ),
+      body: const DecorationLottie(),
     );
   }
 }
@@ -58,20 +54,6 @@ class DecorationLottie extends StatelessWidget {
       "https://assets7.lottiefiles.com/packages/lf20_1cfgmvnc.json";
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Lottie.network(_decorationLottieUrl),
-    );
-  }
-}
-
-class LoadingLottie extends StatelessWidget {
-  const LoadingLottie({Key? key}) : super(key: key);
-
-  final String _loadingLottieUrl =
-      "https://assets10.lottiefiles.com/datafiles/LZyeA614QaESwNk/data.json";
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(child: Lottie.network(_loadingLottieUrl));
+    return Lottie.network(_decorationLottieUrl, fit: BoxFit.none);
   }
 }

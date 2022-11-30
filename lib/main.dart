@@ -6,6 +6,7 @@ import 'package:first/101/text_learn_view.dart';
 import 'package:first/101/scaffold_learn.dart';
 import 'package:first/202/image_learn_advanced.dart';
 import 'package:first/202/theme/light_theme.dart';
+import 'package:first/product/constant/project_items.dart';
 import 'package:first/product/global/resource_context.dart';
 import 'package:first/product/global/theme_notifier.dart';
 import 'package:flutter/material.dart';
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: ProjectItems.projectName,
       theme: context.watch<ThemeNotifier>().currentTheme,
       home: LottieLearn(),
     );

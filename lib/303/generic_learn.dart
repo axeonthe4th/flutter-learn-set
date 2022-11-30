@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 class UserManagement<T extends AdminUser> {
@@ -31,12 +32,22 @@ class UserManagement<T extends AdminUser> {
   }
 }
 
-class GenericUser {
+class GenericUser extends Equatable {
   final String name;
   final String id;
   final int money;
 
   GenericUser(this.name, this.id, this.money);
+
+  bool findUserName(String name) {
+    return this.name == name;
+  }
+
+  @override
+  String toString() => "GenericUser(name: $name, id: $id, money: $money)";
+
+  @override
+  List<Object?> get props => [id];
 }
 
 class AdminUser extends GenericUser {
