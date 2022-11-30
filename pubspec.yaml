@@ -35,6 +35,7 @@ dependencies:
   dio: ^4.0.6
   #animation
   flutter_spinkit: ^5.1.0
+  lottie: ^2.0.0
 
   #states
   provider: ^6.0.4
@@ -79,6 +80,7 @@ flutter:
     - assets/cat.png
     - assets/chad.png
     - assets/deneme1.png
+    - assets/lottie/
   
     
     

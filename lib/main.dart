@@ -29,6 +29,7 @@ import '202/sheet_learn.dart';
 import '202/state_manage/state_manage_learn_view.dart';
 import '202/theme_learn_view.dart';
 import '303/call_back_learn.dart';
+import '303/lottie_learn.dart';
 import '303/part/part_of_learn.dart';
 import '303/reqres_resource/view/reqres_view.dart';
 import '303/tabbar_advanced.dart';
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: context.watch<ThemeNotifier>().currentTheme,
-      home: ReqresView(),
+      home: LottieLearn(),
     );
   }
 }
