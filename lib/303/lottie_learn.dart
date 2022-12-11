@@ -1,5 +1,6 @@
 import 'package:first/product/constant/lottie_items.dart';
 import 'package:first/product/global/theme_notifier.dart';
+import 'package:first/product/navigator/navigator_routes.dart';
 import "package:flutter/material.dart";
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,12 @@ class _LottieLearnState extends State<LottieLearn>
     super.initState();
     controller = AnimationController(
         vsync: this, duration: DurationItems.durationFast());
+    navigateToHome();
+  }
+
+  Future<void> navigateToHome() async {
+    await Future.delayed(const Duration(seconds: 1));
+    Navigator.of(context).pushReplacementNamed(NavigatorNames.home.withParaf);
   }
 
   @override
@@ -41,7 +48,9 @@ class _LottieLearnState extends State<LottieLearn>
                   repeat: false, controller: controller))
         ],
       ),
-      body: const DecorationLottie(),
+      body: Column(
+        children: const [Expanded(child: DecorationLottie())],
+      ),
     );
   }
 }
@@ -50,10 +59,9 @@ class DecorationLottie extends StatelessWidget {
   const DecorationLottie({
     Key? key,
   }) : super(key: key);
-  final String _decorationLottieUrl =
-      "https://assets7.lottiefiles.com/packages/lf20_1cfgmvnc.json";
+  final String _loadingLottiePath = "assets/lottie/loading.json";
   @override
   Widget build(BuildContext context) {
-    return Lottie.network(_decorationLottieUrl, fit: BoxFit.none);
+    return Lottie.asset(_loadingLottiePath, fit: BoxFit.none);
   }
 }

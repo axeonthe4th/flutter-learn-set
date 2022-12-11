@@ -6,9 +6,12 @@ import 'package:first/101/text_learn_view.dart';
 import 'package:first/101/scaffold_learn.dart';
 import 'package:first/202/image_learn_advanced.dart';
 import 'package:first/202/theme/light_theme.dart';
+import 'package:first/303/feed_view.dart';
+import 'package:first/303/navigator/navigate_home_view.dart';
 import 'package:first/product/constant/project_items.dart';
 import 'package:first/product/global/resource_context.dart';
 import 'package:first/product/global/theme_notifier.dart';
+import 'package:first/product/navigator/navigator_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:first/101/button_learn.dart';
 import 'package:flutter/services.dart';
@@ -29,8 +32,10 @@ import '202/package_learn.dart';
 import '202/sheet_learn.dart';
 import '202/state_manage/state_manage_learn_view.dart';
 import '202/theme_learn_view.dart';
+import '303/calculator/home.dart';
 import '303/call_back_learn.dart';
 import '303/lottie_learn.dart';
+import '303/navigator/navigate_home_detail_view.dart';
 import '303/part/part_of_learn.dart';
 import '303/reqres_resource/view/reqres_view.dart';
 import '303/tabbar_advanced.dart';
@@ -78,8 +83,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: ProjectItems.projectName,
-      theme: context.watch<ThemeNotifier>().currentTheme,
-      home: LottieLearn(),
+      theme: //context.watch<ThemeNotifier>().currentTheme,
+          LightTheme().theme,
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) {
+            return const LottieLearn();
+          },
+        );
+      },
+      routes: NavigatorRoutes().items,
     );
   }
 }
