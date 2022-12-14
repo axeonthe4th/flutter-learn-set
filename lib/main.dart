@@ -32,7 +32,7 @@ import '202/package_learn.dart';
 import '202/sheet_learn.dart';
 import '202/state_manage/state_manage_learn_view.dart';
 import '202/theme_learn_view.dart';
-import '303/calculator/home.dart';
+
 import '303/call_back_learn.dart';
 import '303/lottie_learn.dart';
 import '303/navigator/navigate_home_detail_view.dart';
@@ -93,6 +93,16 @@ class MyApp extends StatelessWidget {
         );
       },
       routes: NavigatorRoutes().items,
+      onGenerateRoute: (settings) {
+        if (settings.name == "/home") {
+          return MaterialPageRoute(
+            builder: (context) {
+              return const LottieLearn();
+            },
+          );
+        }
+        return null;
+      },
     );
   }
 }
